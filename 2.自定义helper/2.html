@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="demo"></div>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./node_modules/handlebars/dist/handlebars.min.js"></script>
+    <script id="entry-template" type="text/x-handlebars-template">
+        <div class="entry">
+            {{agree_button "My Text" class="my-class" visible=true counter=4}}            
+        </div>
+    </script>
+    <script>
+        Handlebars.registerHelper('agree_button', function(){
+            console.log(arguments[0]);
+            console.log(arguments[1]);
+            return "aaa";
+        });
+        var source   = $("#entry-template").html();
+        var template = Handlebars.compile(source);
+        var context = {title: "My New Post", body: "This is my first post!"};
+        var html = template(context);
+        // console.log(html);
+        $("#demo").html(html);
+    </script>
+</body>
+</html>
